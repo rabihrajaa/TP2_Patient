@@ -1,4 +1,4 @@
-package entites;
+package org.example.tp2_patient.entites;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,5 +18,5 @@ public class Patient {
     private String nom;
     private Date dateNaissane;
     private Boolean malade;
-    private String score;
+    private int score;
 }
