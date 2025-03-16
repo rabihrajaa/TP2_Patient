@@ -61,6 +61,10 @@ public class Tp2PatientApplication implements CommandLineRunner {
         System.out.println("******************Chercher des patients leurs nom contient ek ******************");
         List<Patient> patients3=patientRepository.findByNomContaining(String.valueOf("ek"));
         System.out.println(patients3);
+        System.out.println("******************Chercher des patients par leurs nom utilisant requete ******************");
+        patients3=patientRepository.findByNomContaining(String.valueOf("%ek%"));
+        System.out.println(patients3);
+
 
     }
 

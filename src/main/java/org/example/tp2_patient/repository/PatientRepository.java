@@ -2,6 +2,8 @@ package org.example.tp2_patient.repository;
 
 import org.example.tp2_patient.entites.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -18,4 +20,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
         Patient findPatientByNomIgnoreCase(String nom);
         //insensible à la casse avec contient
         List<Patient> findPatientByNomContainingIgnoreCase(String nom);
+        // utlilisant une requete
+        @Query("select t from Patient t where t.nom like :x")
+        List<Patient> search(@Param("x") String x);
 }
