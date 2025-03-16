@@ -39,5 +39,26 @@ public class Tp2PatientApplication implements CommandLineRunner {
         System.out.println(patient.getMalade());
         System.out.println(patient.getScore());
 
+        System.out.println("****************** Mettre à jour un patient ******************");
+        Patient newPatient=new Patient(null,"RABIH",sdf.parse("12-12-2002") ,false,1);
+        Patient patientOld= patientRepository.findById(Long.valueOf(1)).map(p -> {
+            p.setNom(newPatient.getNom());
+            p.setDateNaissane(newPatient.getDateNaissane());
+            p.setMalade(newPatient.getMalade());
+            p.setScore(newPatient.getScore());
+             return patientRepository.save(p);
+        }).orElse(null);
+
+        System.out.println("Nouveau Patient "+patientOld);
+
+        System.out.println("****************** Supprimer un patient ******************");
+        patientRepository.deleteById(Long.valueOf(2));
+
+        System.out.println("******************Chercher des patients par nom ******************");
+
+
     }
+
+
+
 }
