@@ -54,8 +54,13 @@ public class Tp2PatientApplication implements CommandLineRunner {
         System.out.println("****************** Supprimer un patient ******************");
         patientRepository.deleteById(Long.valueOf(2));
 
-        System.out.println("******************Chercher des patients par nom ******************");
+        System.out.println("******************Chercher des patients leurs nom fini par IH ******************");
+        List<Patient> patients2=patientRepository.findPatientByNomEndingWith(String.valueOf("IH"));
+        System.out.println(patients2);
 
+        System.out.println("******************Chercher des patients leurs nom contient ek ******************");
+        List<Patient> patients3=patientRepository.findByNomContaining(String.valueOf("ek"));
+        System.out.println(patients3);
 
     }
 
