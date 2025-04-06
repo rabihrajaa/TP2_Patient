@@ -26,6 +26,16 @@ public class Tp2PatientApplication implements CommandLineRunner {
         patientRepository.save(new Patient(null,"Rajaa",sdf.parse("12-12-2002") ,false,1));
         patientRepository.save(new Patient(null,"Kenza",sdf.parse("19-07-1999") ,true,4));
         patientRepository.save(new Patient(null,"Rekia",sdf.parse("02-08-2004") ,true,4));
+
+        System.out.println("****************** Ajouter des patients (utilisant pattern Builder) ******************");
+        Patient patient3=Patient.builder()
+                .id(null)
+                .nom("Iman")
+                .dateNaissane(new Date())
+                .malade(false)
+                .score(12)
+                .build();
+        patientRepository.save(patient3);
         System.out.println("****************** Consulter tous les patients ******************");
         List<Patient> patients=patientRepository.findAll();
         patients.forEach(p->{
@@ -64,6 +74,7 @@ public class Tp2PatientApplication implements CommandLineRunner {
         System.out.println("******************Chercher des patients par leurs nom utilisant requete ******************");
         patients3=patientRepository.findByNomContaining(String.valueOf("%ek%"));
         System.out.println(patients3);
+
 
 
     }
