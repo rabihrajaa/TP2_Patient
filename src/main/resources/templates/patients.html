@@ -7,22 +7,29 @@
 
 </head>
 <body>
-<h2>Liste des patients</h2>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>ID</th><th>Nom</th><th>Date</th><th>Maladi</th><th>Score</th>
-    </tr>
-    <tr th:each="p:${ListPatients}">
-        <td th:text="${p.id}"></td>
-        <td th:text="${p.nom}"></td>
-        <td th:text="${p.dateNaissane}"></td>
-        <td th:text="${p.malade}"></td>
-        <td th:text="${p.score}"></td>
-    </tr>
-    </thead>
-</table>
+<div class="p-3">
+    <div class="card">
+        <div class="card-header">Liste des patients</div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th><th>Nom</th><th>Date</th><th>Maladi</th><th>Score</th>
+                </tr>
+                <tr th:each="p:${ListPatients}">
+                    <td th:text="${p.id}"></td>
+                    <td th:text="${p.nom}"></td>
+                    <td th:text="${p.dateNaissane}"></td>
+                    <td th:text="${p.malade}"></td>
+                    <td th:text="${p.score}"></td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>
