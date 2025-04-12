@@ -1,6 +1,8 @@
 package org.example.tp2_patient.repository;
 
 import org.example.tp2_patient.entites.Patient;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,4 +25,12 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
         // utlilisant une requete
         @Query("select t from Patient t where t.nom like :x")
         List<Patient> search(@Param("x") String x);
+        //1er methode
+        Page<Patient> findByNomContains(String keyword, Pageable pageable);
+
+        //2eme methode HQuery
+        @Query("select p from Patient p where p.nom like :x")
+        Page<Patient> chercher(@Param("x") String keyword,Pageable pageable);
+
+
 }
