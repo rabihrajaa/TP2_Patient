@@ -22,20 +22,20 @@ public class Tp2PatientApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        System.out.println("****************** Ajouter des patients ******************");
-        patientRepository.save(new Patient(null,"Rajaa",sdf.parse("12-12-2002") ,false,1));
-        patientRepository.save(new Patient(null,"Kenza",sdf.parse("19-07-1999") ,true,4));
-        patientRepository.save(new Patient(null,"Rekia",sdf.parse("02-08-2004") ,true,4));
-
-        System.out.println("****************** Ajouter des patients (utilisant pattern Builder) ******************");
-        Patient patient3=Patient.builder()
-                .id(null)
-                .nom("Iman")
-                .dateNaissane(new Date())
-                .malade(false)
-                .score(12)
-                .build();
-        patientRepository.save(patient3);
+//        System.out.println("****************** Ajouter des patients ******************");
+//        patientRepository.save(new Patient(null,"Rajaa",sdf.parse("12-12-2002") ,false,100));
+//        patientRepository.save(new Patient(null,"Kenza",sdf.parse("19-07-1999") ,true,200));
+//        patientRepository.save(new Patient(null,"Rekia",sdf.parse("02-08-2004") ,true,300));
+//
+//        System.out.println("****************** Ajouter des patients (utilisant pattern Builder) ******************");
+//        Patient patient3=Patient.builder()
+//                .id(null)
+//                .nom("Iman")
+//                .dateNaissane(new Date())
+//                .malade(false)
+//                .score(120)
+//                .build();
+//        patientRepository.save(patient3);
         System.out.println("****************** Consulter tous les patients ******************");
         List<Patient> patients=patientRepository.findAll();
         patients.forEach(p->{
@@ -69,11 +69,11 @@ public class Tp2PatientApplication implements CommandLineRunner {
         System.out.println(patients2);
 
         System.out.println("******************Chercher des patients leurs nom contient ek ******************");
-        List<Patient> patients3=patientRepository.findByNomContaining(String.valueOf("ek"));
-        System.out.println(patients3);
-        System.out.println("******************Chercher des patients par leurs nom utilisant requete ******************");
-        patients3=patientRepository.findByNomContaining(String.valueOf("%ek%"));
-        System.out.println(patients3);
+//        List<Patient> patients3=patientRepository.findByNomContaining(String.valueOf("ek"));
+//        System.out.println(patients3);
+//        System.out.println("******************Chercher des patients par leurs nom utilisant requete ******************");
+//        patients3=patientRepository.findByNomContaining(String.valueOf("%ek%"));
+//        System.out.println(patients3);
 
 
 
