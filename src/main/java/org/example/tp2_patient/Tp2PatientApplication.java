@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -44,14 +45,19 @@ public class Tp2PatientApplication implements CommandLineRunner {
     CommandLineRunner commandLineRunner(JdbcUserDetailsManager jdbcUserDetailsManager){
         PasswordEncoder passwordEncoder=passwordEncoder();
         return args ->{
+            UserDetails u1=jdbcUserDetailsManager.loadUserByUsername("user11");
+            UserDetails u2=jdbcUserDetailsManager.loadUserByUsername("user22");
+            UserDetails ad=jdbcUserDetailsManager.loadUserByUsername("admin2");
+
+            if(u1==null)
             jdbcUserDetailsManager.createUser(
                     User.withUsername("user11").password(passwordEncoder.encode("1234")).roles("USER").build()
             );
-
+            if(u2==null)
             jdbcUserDetailsManager.createUser(
                     User.withUsername("user22").password(passwordEncoder.encode("1234")).roles("USER").build()
             );
-
+            if(ad==null)
             jdbcUserDetailsManager.createUser(
                     User.withUsername("admin2").password(passwordEncoder.encode("1234")).roles("ADMIN","USER").build()
             );
