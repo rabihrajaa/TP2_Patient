@@ -29,13 +29,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().authenticated()
-                        .requestMatchers("/user/**").hasRole("USER")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/user/**").hasRole("USER")
+                        .anyRequest().authenticated()
                 )
-                .formLogin(Customizer.withDefaults()); // Pour login via formulaire
+                .exceptionHandling(exception ->
+                        exception.accessDeniedPage("/notAuthorized")
+                )
+                .formLogin(Customizer.withDefaults());
 
-        return  httpSecurity.build();
+        return httpSecurity.build();
     }
+
 
 }

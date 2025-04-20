@@ -20,7 +20,7 @@ import java.util.List;
 public class PatientController {
     private PatientRepository patientRepository;
 
-    @GetMapping("/user/index")
+    @GetMapping("/index")
     public String index(Model model,@RequestParam(name="page",defaultValue = "0") int p,
                                     @RequestParam(name="size",defaultValue = "4") int s,
                                     @RequestParam(name="keyword",defaultValue = "") String kw){
@@ -40,7 +40,7 @@ public class PatientController {
 
     @GetMapping("/")
     public String home(){
-        return "redirect:/user/index";
+        return "redirect:/index";
     }
 
 
@@ -55,7 +55,7 @@ public class PatientController {
                       @RequestParam(defaultValue = "") String keyword){
         if(bindingResult.hasErrors()) return "formPatients";
         patientRepository.save(patient);
-        return "redirect:/user/index?page="+page+"&keyword="+keyword;
+        return "redirect:/index?page="+page+"&keyword="+keyword;
     }
 
     @GetMapping("/admin/editPatient")
