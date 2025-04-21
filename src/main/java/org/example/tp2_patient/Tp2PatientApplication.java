@@ -2,6 +2,7 @@ package org.example.tp2_patient;
 
 import org.example.tp2_patient.entites.Patient;
 import org.example.tp2_patient.repository.PatientRepository;
+import org.example.tp2_patient.security.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -41,7 +42,7 @@ public class Tp2PatientApplication implements CommandLineRunner {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+   // @Bean
     CommandLineRunner commandLineRunner(JdbcUserDetailsManager jdbcUserDetailsManager){
         PasswordEncoder passwordEncoder=passwordEncoder();
         return args ->{
@@ -61,6 +62,23 @@ public class Tp2PatientApplication implements CommandLineRunner {
             jdbcUserDetailsManager.createUser(
                     User.withUsername("admin2").password(passwordEncoder.encode("1234")).roles("ADMIN","USER").build()
             );
+
+        };
+    }
+
+    //@Bean
+    CommandLineRunner commandLineRunnerUserDetails(AccountService accountService){
+        return  args -> {
+            accountService.addNewRole("USER");
+            accountService.addNewRole("ADMIN");
+            accountService.addNewUser("user1","1234","user1@gmail.com","1234");
+            accountService.addNewUser("user2","1234","user2@gmail.com","1234");
+            accountService.addNewUser("admin","1234","admin@gmail.com","1234");
+
+            accountService.addRoleToUser("user1","USER");
+            accountService.addRoleToUser("user2","USER");
+            accountService.addRoleToUser("admin","USER");
+            accountService.addRoleToUser("admin","ADMIN");
 
         };
     }
